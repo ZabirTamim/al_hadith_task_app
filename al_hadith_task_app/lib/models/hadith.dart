@@ -1,38 +1,62 @@
 
-
 class Hadith {
-  int? id;
-  String? title;
-  String? titleAr;
-  int? numberOfHadis;
-  String? abvrCode;
-  String? bookName;
-  String? bookDescr;
+  int? hadithId;
+  int? bookId;
+  int? chapterId;
+  int? sectionId;
+  String? narrator;
+  String? bn;
+  String? ar;
+  String? arDiacless;
+  String? note;
+  int? gradeId;
+  String? grade;
+  String? gradeColor;
 
-  Hadith({this.id, this.title, this.titleAr, this.numberOfHadis, this.abvrCode, this.bookName, this.bookDescr});
+  Hadith({
+    this.hadithId,
+    this.bookId,
+    this.chapterId,
+    this.sectionId,
+    this.narrator,
+    this.bn,
+    this.ar,
+    this.arDiacless,
+    this.note,
+    this.gradeId,
+    this.grade,
+    this.gradeColor,
+  });
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{};
-    if (id != null) {
-      map['id'] = id;
-    }
-    map['title'] = title;
-    map['title_ar'] = titleAr;
-    map['number_of_hadis'] = numberOfHadis;
-    map['abvr_code'] = abvrCode;
-    map['book_name'] = bookName;
-    map['book_descr'] = bookDescr;
-    return map;
+    return {
+      'hadith_id': hadithId,
+      'book_id': bookId,
+      'chapter_id': chapterId,
+      'section_id': sectionId,
+      'narrator': narrator,
+      'bn': bn,
+      'ar': ar,
+      'ar_diacless': arDiacless,
+      'note': note,
+      'grade_id': gradeId,
+      'grade': grade,
+      'grade_color': gradeColor,
+    };
   }
 
   Hadith.fromMap(Map<String, dynamic> map) {
-    id = map['id'];
-    title = map['title'];
-    titleAr = map['title_ar'];
-    numberOfHadis = map['number_of_hadis'];
-    abvrCode = map['abvr_code'];
-    bookName = map['book_name'];
-    bookDescr = map['book_descr'];
-
+    hadithId = map['hadith_id'];
+    bookId = map['book_id'];
+    chapterId = map['chapter_id'];
+    sectionId = map['section_id'];
+    narrator = map['narrator'];
+    bn = map['bn'];
+    ar = map['ar'];
+    arDiacless = map['ar_diacless'];
+    note = map['note'];
+    gradeId = map['grade_id'];
+    grade = map['grade'];
+    gradeColor = map['grade_color'];
   }
 }

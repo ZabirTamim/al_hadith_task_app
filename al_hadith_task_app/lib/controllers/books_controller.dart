@@ -1,26 +1,25 @@
-
-
 import 'package:get/get.dart';
 
 import '../database/database_helper.dart';
-import '../models/hadith.dart';
+import '../models/books.dart';
 
-class HadithController extends GetxController {
-  var hadithList = <Hadith>[].obs;
+
+class BooksController extends GetxController {
+  var booksList = <Books>[].obs;
   var isLoading = true.obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchHadith();
+    fetchBooks();
   }
 
-  void fetchHadith() async {
+  void fetchBooks() async {
     isLoading.value = true;
     try {
       var dbHelper = DatabaseHelper();
-      var fetchedHadith = await dbHelper.getHadithList();
-      hadithList.value = fetchedHadith;
+      var fetchedBooks = await dbHelper.getBooksList();
+      booksList.value = fetchedBooks;
     } finally {
       isLoading.value = false;
     }
