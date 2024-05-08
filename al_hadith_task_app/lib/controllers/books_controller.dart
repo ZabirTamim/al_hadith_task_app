@@ -5,7 +5,7 @@ import '../models/books.dart';
 
 
 class BooksController extends GetxController {
-  var booksList = <Books>[].obs;
+  var booksList = <Map<String, dynamic>>[].obs;
   var isLoading = true.obs;
 
   @override
@@ -18,7 +18,7 @@ class BooksController extends GetxController {
     isLoading.value = true;
     try {
       var dbHelper = DatabaseHelper();
-      var fetchedBooks = await dbHelper.getBooksList();
+      var fetchedBooks = await dbHelper.getBooks();
       booksList.value = fetchedBooks;
     } finally {
       isLoading.value = false;

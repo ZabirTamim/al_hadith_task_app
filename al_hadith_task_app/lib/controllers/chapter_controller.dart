@@ -6,21 +6,21 @@ import '../database/database_helper.dart';
 import '../models/chapter.dart';
 
 class ChapterController extends GetxController {
-  var chapterList = <Chapter>[].obs;
+  var chaptersList = <Map<String, dynamic>>[].obs;
   var isLoading = true.obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchChapter();
+    fetchChapters();
   }
 
-  void fetchChapter() async {
+  void fetchChapters() async {
     isLoading.value = true;
     try {
       var dbHelper = DatabaseHelper();
-      var fetchedChapter = await dbHelper.getChapterList();
-      chapterList.value = fetchedChapter;
+      var fetchedChapters = await dbHelper.getChapters();
+      chaptersList.value = fetchedChapters;
     } finally {
       isLoading.value = false;
     }

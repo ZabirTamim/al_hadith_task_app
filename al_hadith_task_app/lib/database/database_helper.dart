@@ -46,78 +46,24 @@ class DatabaseHelper {
 
   // CHAPTER TABLE
 
-  Future<List<Chapter>> getChapterList() async {
+  Future<List<Map<String, dynamic>>> getBooks() async {
     Database? db = await database;
-    List<Map<String, dynamic>> maps = await db!.query('chapter');
-    return List.generate(maps.length, (i) {
-      return Chapter(
-        id: maps[i]['id'],
-        chapterId: maps[i]['chapter_id'],
-        bookId: maps[i]['book_id'],
-        title: maps[i]['title'],
-        number: maps[i]['number'],
-        hadisRange: maps[i]['hadis_range'],
-        bookName: maps[i]['book_name'],
-      );
-    });
+    return await db!.query('books', columns: ['title', 'abvr_code']);
   }
 
-  // BOOKS TABLE
-
-  Future<List<Books>> getBooksList() async {
+  Future<List<Map<String, dynamic>>> getChapters() async {
     Database? db = await database;
-    List<Map<String, dynamic>> maps = await db!.query('books');
-    return List.generate(maps.length, (i) {
-      return Books(
-        id: maps[i]['id'],
-        title: maps[i]['title'],
-        titleAr: maps[i]['title_ar'],
-        numberOfHadis: maps[i]['number_of_hadis'],
-        abvrCode: maps[i]['abvr_code'],
-        bookName: maps[i]['book_name'],
-        bookDescr: maps[i]['book_descr'],
-      );
-    });
+    return await db!.query('chapter', columns: ['title', 'hadis_range']);
   }
 
-  // HADITH TABLE
-
-  Future<List<Hadith>> getHadithList() async {
+  Future<List<Map<String, dynamic>>> getSections() async {
     Database? db = await database;
-    List<Map<String, dynamic>> maps = await db!.query('hadith');
-    return List.generate(maps.length, (i) {
-      return Hadith(
-        hadithId: maps[i]['hadith_id'],
-        bookId: maps[i]['book_id'],
-        chapterId: maps[i]['chapter_id'],
-        sectionId: maps[i]['section_id'],
-        narrator: maps[i]['narrator'],
-        bn: maps[i]['bn'],
-        ar: maps[i]['ar'],
-        arDiacless: maps[i]['ar_diacless'],
-        note: maps[i]['note'],
-        gradeId: maps[i]['grade_id'],
-        grade: maps[i]['grade'],
-        gradeColor: maps[i]['grade_color'],
-      );
-    });
+    return await db!.query('section', columns: ['number', 'title', 'preface']);
   }
 
-  // SECTION TABLE
-
-  Future<List<Section>> getSectionList() async {
+  Future<List<Map<String, dynamic>>> getHadith() async {
     Database? db = await database;
-    List<Map<String, dynamic>> maps = await db!.query('section');
-    return List.generate(maps.length, (i) {
-      return Section(
-        id: maps[i]['id'],
-        bookId: maps[i]['book_id'],
-        chapterId: maps[i]['chapter_id'],
-        sectionId: maps[i]['section_id'],
-        title: maps[i]['title'],
-        preface: maps[i]['preface'],
-        number: maps[i]['number'],
-      );
-    });
+    return await db!.query('hadith',
+        columns: ['hadith_id', 'grade', 'grade_color', 'narrator', 'ar', 'bn', 'note']);
   }
 }
