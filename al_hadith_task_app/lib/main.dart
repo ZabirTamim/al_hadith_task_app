@@ -1,3 +1,4 @@
+import 'package:al_hadith_task_app/const/color_const.dart';
 import 'package:al_hadith_task_app/screens/hadith_details_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Al Hadith',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AlHadithColors.navGreen),
         useMaterial3: true,
       ),
       home: HadithDetailsPage(),
