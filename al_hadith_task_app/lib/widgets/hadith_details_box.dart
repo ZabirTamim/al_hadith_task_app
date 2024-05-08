@@ -13,7 +13,14 @@ class HadithDetailsBox extends StatelessWidget {
   final String hadithNarrator;
   final String hadithBn;
 
-  const HadithDetailsBox({super.key, required this.abvrCode, required this.bookTitle, required this.hadithId, required this.hadithAr, required this.hadithNarrator, required this.hadithBn});
+  const HadithDetailsBox(
+      {super.key,
+      required this.abvrCode,
+      required this.bookTitle,
+      required this.hadithId,
+      required this.hadithAr,
+      required this.hadithNarrator,
+      required this.hadithBn});
 
   @override
   Widget build(BuildContext context) {
@@ -21,76 +28,66 @@ class HadithDetailsBox extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            vertical: 25, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: GuiShapeBorder(
-                          shape: GuiShapePolygon(
-                            sides: 6,
-                            cornerRadius: 3,
-                            startAngle: GeoAngle(degree: 90),
+                    Material(
+                      color: AlHadithColors.abvrGreen,
+                      shape: GuiShapeBorder(
+                        shape: GuiShapePolygon(
+                          sides: 6,
+                          cornerRadius: 2,
+                          startAngle: GeoAngle(degree: 90),
+                        ),
+                      ),
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Center(
+                          child: Text(
+                            abvrCode,
+                            style: const TextStyle(
+                                color: AlHadithColors.navTextWhite, fontSize: 18),
                           ),
                         ),
-                        minimumSize: const Size(35, 55),
-                        backgroundColor:
-                        AlHadithColors.abvrGreen,
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        abvrCode,
-                        style: const TextStyle(
-                            color:
-                            AlHadithColors.navTextWhite,
-                            fontSize: 18),
                       ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                            bookTitle,
-                            style: AlHadithTextStyle()
-                                .mediumText),
+                        Text(bookTitle, style: AlHadithTextStyle().mediumText),
                         Text(
                           "হাদিস: ${hadithId.toString()}",
-                          style: AlHadithTextStyle()
-                              .headerText
-                              .copyWith(
-                              color: AlHadithColors
-                                  .hadithNumberGreen),
+                          style: AlHadithTextStyle().headerText.copyWith(
+                              color: AlHadithColors.hadithNumberGreen),
                         )
                       ],
                     )
                   ],
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Material(
                       color: AlHadithColors.hadithGradeGreen,
                       borderRadius: BorderRadius.circular(15),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 6, horizontal: 12),
+                      child: SizedBox(
+                        height: 30,
+                        width: 80,
                         child: Center(
                           child: Text(
                             "সহিহ হাদিস",
-                            style:
-                            AlHadithTextStyle().smallText,
+                            style: AlHadithTextStyle().smallText,
                           ),
                         ),
                       ),
@@ -100,8 +97,8 @@ class HadithDetailsBox extends StatelessWidget {
                     ),
                     Icon(
                       CupertinoIcons.ellipsis_vertical,
-                      color: AlHadithColors
-                          .sectionPrefaceTextGrey.withOpacity(0.7),
+                      color: AlHadithColors.sectionPrefaceTextGrey
+                          .withOpacity(0.7),
                     )
                   ],
                 )
@@ -116,20 +113,15 @@ class HadithDetailsBox extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text(
-                "$hadithNarrator থেকে বর্ণিত: ",
+            Text("$hadithNarrator থেকে বর্ণিত: ",
                 style: AlHadithTextStyle()
                     .headerText
-                    .copyWith(
-                    color: AlHadithColors
-                        .sectionNumberTextGreen)),
+                    .copyWith(color: AlHadithColors.sectionNumberTextGreen)),
             const SizedBox(
               height: 10,
             ),
             Text(hadithBn,
-                style: AlHadithTextStyle()
-                    .headerText
-                    .copyWith(
+                style: AlHadithTextStyle().headerText.copyWith(
                     fontWeight: FontWeight.normal,
                     color: AlHadithColors.arabicBlack)),
           ],

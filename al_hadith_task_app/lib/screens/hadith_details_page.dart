@@ -1,7 +1,6 @@
 import 'package:al_hadith_task_app/const/color_const.dart';
 import 'package:al_hadith_task_app/widgets/hadith_details_box.dart';
 import 'package:al_hadith_task_app/widgets/hadith_header_box.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/database_controller.dart';
