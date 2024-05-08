@@ -84,7 +84,7 @@ flutter:
       fonts:
         - asset: fonts/kalpurush.ttf
 
-    - family: KFGQPC Uthmanic Script HAFS
+    - family: KFGQ
       fonts:
         - asset: fonts/font_kfgq.ttf
 
