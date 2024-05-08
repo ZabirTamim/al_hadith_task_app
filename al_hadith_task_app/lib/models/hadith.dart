@@ -2,6 +2,7 @@
 class Hadith {
   int? hadithId;
   int? bookId;
+  String? bookName;
   int? chapterId;
   int? sectionId;
   String? narrator;
@@ -16,6 +17,7 @@ class Hadith {
   Hadith({
     this.hadithId,
     this.bookId,
+    this.bookName,
     this.chapterId,
     this.sectionId,
     this.narrator,
@@ -32,6 +34,7 @@ class Hadith {
     return {
       'hadith_id': hadithId,
       'book_id': bookId,
+      'book_name': bookName,
       'chapter_id': chapterId,
       'section_id': sectionId,
       'narrator': narrator,
@@ -48,6 +51,7 @@ class Hadith {
   Hadith.fromMap(Map<String, dynamic> map) {
     hadithId = map['hadith_id'];
     bookId = map['book_id'];
+    bookName = map['book_name'];
     chapterId = map['chapter_id'];
     sectionId = map['section_id'];
     narrator = map['narrator'];

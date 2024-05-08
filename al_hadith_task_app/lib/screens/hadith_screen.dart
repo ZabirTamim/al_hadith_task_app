@@ -1,27 +1,27 @@
-
-
-
-import 'package:al_hadith_task_app/const/color_const.dart';
-import 'package:al_hadith_task_app/const/text_style_const.dart';
-import 'package:flutter/cupertino.dart';
+/*
+import 'package:all_hadis/const/color_const.dart';
+import 'package:all_hadis/const/text_style.dart';
+import 'package:all_hadis/controller/database_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:gui_shape/geo/geo_common.dart';
-import 'package:gui_shape/gui/gui_shape_border.dart';
-import 'package:gui_shape/shape/gui_shape_polygon.dart';
+import 'package:gui_shape/geo/geo.dart';
+import 'package:gui_shape/gui/gui.dart';
+*/
 
-import '../controllers/database_controller.dart';
 
-class HadithDetailsPage extends StatelessWidget {
-  HadithDetailsPage({
+/*
+class HadithScreen extends StatelessWidget {
+  HadithScreen({
     super.key,
   });
+
   final DatabaseController databaseController = Get.put(DatabaseController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AlHadithColors.navGreen,
+      backgroundColor: MyColor.appColor,
       body: Obx(() {
         if (databaseController.isLoading.value) {
           return const Center(
@@ -34,11 +34,11 @@ class HadithDetailsPage extends StatelessWidget {
               collapsedHeight: 2,
               toolbarHeight: 0,
               elevation: 0,
-              backgroundColor: AlHadithColors.navGreen,
+              backgroundColor: MyColor.appColor,
               flexibleSpace: FlexibleSpaceBar(
                 background: Padding(
                   padding: const EdgeInsets.only(
-                      left: 20, right: 20, bottom: 10, top: 20),
+                      left: 20, right: 20, bottom: 10, top: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +47,7 @@ class HadithDetailsPage extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.arrow_back_ios,
-                            color: AlHadithColors.navTextWhite,
+                            color: MyColor.appWhiteColor,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -57,11 +57,11 @@ class HadithDetailsPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(databaseController.booksList[0]['title'] ?? '',
-                                    style: AlHadithTextStyle().headerText),
+                                Text(databaseController.booksList[0].title!,
+                                    style: Style().headerText),
                                 Text(
-                                  databaseController.chaptersList[0]['title'] ?? '',
-                                  style: AlHadithTextStyle().smallText,
+                                  databaseController.chapterList[0].title!,
+                                  style: Style().smallText,
                                 )
                               ],
                             ),
@@ -70,30 +70,30 @@ class HadithDetailsPage extends StatelessWidget {
                       ),
                       const Icon(
                         Icons.menu_outlined,
-                        color: AlHadithColors.navTextWhite,
+                        color: MyColor.appWhiteColor,
                       )
                     ],
                   ),
                 ),
               ),
               pinned: true,
-              expandedHeight: 60,
+              expandedHeight: 50,
               clipBehavior: Clip.hardEdge,
             ),
             SliverToBoxAdapter(
               child: Material(
-                color: AlHadithColors.scaffoldColor,
+                color: MyColor.appScaffoldColor,
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
                 clipBehavior: Clip.hardEdge,
                 child: Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   child: Column(
                     children: [
                       Material(
-                        color: AlHadithColors.navTextWhite,
+                        color: MyColor.appWhiteColor,
                         borderRadius: BorderRadius.circular(10),
                         child: Padding(
                           padding: const EdgeInsets.all(15),
@@ -103,36 +103,36 @@ class HadithDetailsPage extends StatelessWidget {
                             children: [
                               RichText(
                                 text: TextSpan(
-                                  text: '১/১. অধ্যায়: ',
-                                  style: AlHadithTextStyle()
+                                  text: '১/১ অধ্যায়: ',
+                                  style: Style()
                                       .headerText
-                                      .copyWith(color: AlHadithColors.sectionNumberTextGreen),
+                                      .copyWith(color: MyColor.appColor),
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                        'আল্লাহু রাসূল ( সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম)- এর প্রতী কিভাবে ওয়াহী [১] শুরু হয়েছিল। ',
-                                        style: AlHadithTextStyle().headerText.copyWith(
-                                            color: AlHadithColors.sectionTitleTextGrey,
+                                            'আল্লাহু রাসূল ( সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম)- এর প্রতী কিভাবে ওয়াহী [১] শুরু হয়েছিল। ',
+                                        style: Style().headerText.copyWith(
+                                            color: MyColor.appBlackColor,
                                             fontSize: 17)),
                                   ],
                                 ),
                               ),
-                              const Padding(
+                              Padding(
                                 padding:
-                                EdgeInsets.symmetric(vertical: 15),
+                                    const EdgeInsets.symmetric(vertical: 15),
                                 child: SizedBox(
                                   width: double.infinity,
                                   child: Divider(
                                     color:
-                                    AlHadithColors.sectionTitleTextGrey,
+                                        MyColor.appBlackColor.withOpacity(.4),
                                   ),
                                 ),
                               ),
                               Text(
-                                databaseController.sectionsList[0]['number'].toString(),
-                                style: AlHadithTextStyle().smallText.copyWith(
+                                "এ মর্মে আল্লাহ তা,আলার বাণী: নিশ্চই আমি আপনার প্রতী সেরূপ ওয়াহী প্রেরণ করেছি যেরূপ নূহ ও তার পরবর্তী নবীদের প্রতী ওয়াহী প্রেরণ করেছিলাম।(সূরা আন-নিসা ৪/১৬৩)",
+                                style: Style().smallText.copyWith(
                                     color:
-                                    AlHadithColors.arabicBlack.withOpacity(0.5),
+                                        MyColor.appBlackColor.withOpacity(0.5),
                                     fontSize: 15),
                               )
                             ],
@@ -153,7 +153,7 @@ class HadithDetailsPage extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -167,13 +167,14 @@ class HadithDetailsPage extends StatelessWidget {
                                             ),
                                           ),
                                           minimumSize: const Size(35, 55),
-                                          backgroundColor: AlHadithColors.abvrGreen,
+                                          backgroundColor: MyColor.buttonColor,
                                         ),
                                         onPressed: () {},
                                         child: Text(
-                                          databaseController.booksList[0]['abvr_code'] ?? '',
+                                          databaseController
+                                              .booksList[0].abvrCode!,
                                           style: const TextStyle(
-                                              color: AlHadithColors.navTextWhite,
+                                              color: MyColor.appWhiteColor,
                                               fontSize: 18),
                                         ),
                                       ),
@@ -182,14 +183,16 @@ class HadithDetailsPage extends StatelessWidget {
                                       ),
                                       Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text(databaseController.booksList[0]['title'] ?? '',
-                                              style: AlHadithTextStyle().mediumText),
+                                          Text(
+                                              databaseController
+                                                  .booksList[0].title!,
+                                              style: Style().mediumText),
                                           Text(
                                             "হাদিস: ১",
-                                            style: AlHadithTextStyle().headerText.copyWith(
-                                                color: AlHadithColors.hadithNumberGreen),
+                                            style: Style().headerText.copyWith(
+                                                color: MyColor.appColor),
                                           )
                                         ],
                                       )
@@ -199,7 +202,7 @@ class HadithDetailsPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Material(
-                                        color: AlHadithColors.hadithGradeGreen,
+                                        color: MyColor.appColor.withOpacity(.7),
                                         borderRadius: BorderRadius.circular(15),
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
@@ -207,7 +210,7 @@ class HadithDetailsPage extends StatelessWidget {
                                           child: Center(
                                             child: Text(
                                               "সহিহ হাদিস",
-                                              style: AlHadithTextStyle().smallText,
+                                              style: Style().smallText,
                                             ),
                                           ),
                                         ),
@@ -215,9 +218,10 @@ class HadithDetailsPage extends StatelessWidget {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      const Icon(
-                                        CupertinoIcons.ellipsis_vertical,
-                                        color: AlHadithColors.sectionPrefaceTextGrey,
+                                      Icon(
+                                        FontAwesomeIcons.ellipsisVertical,
+                                        color: MyColor.appBlackColor
+                                            .withOpacity(.4),
                                       )
                                     ],
                                   )
@@ -226,27 +230,12 @@ class HadithDetailsPage extends StatelessWidget {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Text(
-                                  databaseController.hadithList[0]['ar'] ?? '',                                  textAlign: TextAlign.right,
-                                  style: AlHadithTextStyle().arabicText),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                  databaseController.hadithList[0]['narrator'] ?? "",
-                                  style: AlHadithTextStyle().headerText.copyWith(color: AlHadithColors.sectionNumberTextGreen)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                  databaseController.hadithList[0]['bn'] ?? '',
-                                  style: AlHadithTextStyle().headerText.copyWith(fontWeight:FontWeight.normal,color: AlHadithColors.arabicBlack)),
+                              Text(databaseController.hadithList[1].ar!,
+                                  textAlign: TextAlign.right,
+                                  style: Style().arabicText)
                             ],
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 25,
                       ),
                     ],
                   ),
@@ -258,4 +247,4 @@ class HadithDetailsPage extends StatelessWidget {
       }),
     );
   }
-}
+}*/
